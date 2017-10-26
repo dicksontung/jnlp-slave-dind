@@ -1,4 +1,4 @@
-FROM jenkinsci/docker-jnlp-slave:2.6.2
+FROM jenkinsci/docker-jnlp-slave:2.62
 MAINTAINER Dickson Tung <@dicksontung>
 ENV DOCKER_VERSION=17.09.0-ce
 USER root
