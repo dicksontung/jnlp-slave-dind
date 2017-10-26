@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-solutions-images/jenkins-k8s-slave
+FROM jenkinsci/docker-jnlp-slave:2.6.2
 MAINTAINER Dickson Tung <@dicksontung>
 ENV DOCKER_VERSION=17.09.0-ce
 USER root
