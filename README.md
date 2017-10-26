@@ -10,4 +10,5 @@ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock dixont/jnlp-sla
 
 ---
 Github: https://github.com/dicksontung/jnlp-slave-dind
+
 Dockerhub: https://hub.docker.com/r/dixont/jnlp-slave-dind/
