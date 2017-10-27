@@ -1,8 +1,23 @@
-FROM jenkinsci/jnlp-slave:2.62
-MAINTAINER Dickson Tung <@dicksontung>
-ENV DOCKER_VERSION=17.09.0-ce
-USER root
-RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz \
-		&& tar --strip-components=1 -xvzf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
-		&& chmod -R +x /usr/local/bin/docker
-RUN rm -rf docker-${DOCKER_VERSION}.tgz
+FROM ubuntu:16.04
+MAINTAINER tungdickson@gmail.com
+
+# Let's start with some basic stuff.
+RUN apt-get update -qq && apt-get install -qqy \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    lxc \
+    iptables
+
+RUN apt-get install -qqy openjdk-8-jdk
+    
+# Install Docker from Docker Inc. repositories.
+RUN curl -sSL https://get.docker.com/ | sh
+
+# Install the magic wrapper.
+ADD ./wrapdocker /usr/local/bin/wrapdocker
+RUN chmod +x /usr/local/bin/wrapdocker
+
+# Define additional metadata for our image.
+VOLUME /var/lib/docker
+CMD ["wrapdocker"]
